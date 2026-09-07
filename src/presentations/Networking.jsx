@@ -521,7 +521,7 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
         </p>
 
         <div className="grid-2">
-          <div className="flex-col-gap stagger d-3">
+          <div className="flex-col-gap stagger d-3" style={{ alignSelf: 'flex-start' }}>
             <div className="glass-panel" style={{ borderTop: '4px solid var(--emerald)' }}>
               <h3 style={{ color: 'var(--emerald)', marginBottom: '1rem' }}>How Playit.gg Works</h3>
               <ul className="sleek-list" style={{ fontSize: '1rem' }}>
