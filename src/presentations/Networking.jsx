@@ -442,7 +442,7 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
               <h1 className="num-massive" style={{ color: 'var(--purple)', fontSize: '3rem' }}>1</h1>
               <div>
                 <h3 style={{ color: '#fff', marginBottom: '0.25rem', fontSize: '1.1rem' }}>DNS Spoofing</h3>
-                <p style={{ margin: 0, fontSize: '0.9rem' }}>You ask for <span className="mono text-gradient grad-purple">telegram.org</span>. ISP returns <span className="mono">0.0.0.0</span>.</p>
+                <p style={{ margin: 0, fontSize: '0.9rem' }}>You ask for <span className="mono text-gradient grad-purple">telegram.org</span>. ISP returns <span className="mono">0.0.0.0</span>. <em>(e.g., Telegram Block 2026)</em></p>
               </div>
             </div>
 
