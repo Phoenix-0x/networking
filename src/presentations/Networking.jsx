@@ -298,26 +298,34 @@ export const slides = [
               <strong>0.0.0.0 (Any):</strong> App listens on ALL interfaces.
             </li>
           </ul>
-          <div className="stagger d-3" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="glass-panel" style={{ width: '100%', textAlign: 'center', padding: '2rem 1rem' }}>
-              <h3 style={{ fontFamily: '"JetBrains Mono"', color: 'var(--emerald)', marginBottom: '2rem' }}>
+          <div className="stagger d-3" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center' }}>
+            <div className="glass-panel" style={{ width: '100%', textAlign: 'center', padding: '1.5rem 1rem' }}>
+              <h3 style={{ fontFamily: '"JetBrains Mono"', color: 'var(--emerald)', marginBottom: '1.5rem' }}>
                 192.168.1.50
               </h3>
               <div style={{ display: 'flex', justifyContent: 'space-around', gap: '1rem' }}>
-                <div style={{ flex: 1, padding: '1.5rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
+                <div style={{ flex: 1, padding: '1rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
                   <h3 style={{ color: 'var(--cyan)', margin: 0 }}>80</h3>
                   <span className="mono" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Web</span>
                 </div>
-                <div style={{ flex: 1, padding: '1.5rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
+                <div style={{ flex: 1, padding: '1rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
                   <h3 style={{ color: 'var(--rose)', margin: 0 }}>22</h3>
                   <span className="mono" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>SSH</span>
                 </div>
-                <div style={{ flex: 1, padding: '1.5rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
+                <div style={{ flex: 1, padding: '1rem 0', border: '2px solid rgba(255, 255, 255, 0.2)', borderBottom: 'none', borderRadius: '8px 8px 0 0', background: 'rgba(0, 0, 0, 0.5)' }}>
                   <h3 style={{ color: 'var(--amber)', margin: 0 }}>25565</h3>
                   <span className="mono" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>MC</span>
                 </div>
               </div>
             </div>
+            
+            <Terminal active={active} cmd="ss -tuln" fontSize="0.75rem">
+              <div style={{ color: 'var(--text-muted)' }}>Netid  State   Recv-Q  Send-Q      Local Address:Port      Peer Address:Port</div>
+              <div><span style={{ color: 'var(--rose)' }}>tcp</span>    LISTEN  0       128             <span style={{ color: 'var(--rose)', fontWeight: 'bold' }}>127.0.0.1:3306</span>           0.0.0.0:*</div>
+              <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '0.5rem' }}>// MySQL bound to Loopback. Safe. Cannot be reached externally.</div>
+              <div><span style={{ color: 'var(--cyan)' }}>tcp</span>    LISTEN  0       128               <span style={{ color: 'var(--cyan)', fontWeight: 'bold' }}>0.0.0.0:80</span>             0.0.0.0:*</div>
+              <div style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>// Web Server bound to Any. Open to the world.</div>
+            </Terminal>
           </div>
         </div>
       </Slide>
