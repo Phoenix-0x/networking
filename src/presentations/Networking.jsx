@@ -879,7 +879,7 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
               fontSize="0.75rem"
             >
               <div style={{ color: 'var(--text-muted)' }}>listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes</div>
-              <div style={{ color: 'var(--text-muted)' }}>14:22:15.123 IP 192.168.1.5.53421 > 192.168.1.100.8080: Flags [P.], seq 1:215, ack 1, win 502, options [nop,nop,TS val 123 ecr 456], length 215</div>
+              <div style={{ color: 'var(--text-muted)' }}>14:22:15.123 IP 192.168.1.5.53421 &gt; 192.168.1.100.8080: Flags [P.], seq 1:215, ack 1, win 502, options [nop,nop,TS val 123 ecr 456], length 215</div>
               <div style={{ color: 'var(--rose)', marginTop: '0.5rem' }}>E...(.@.@.......d...P.W...5.P...k...</div>
               <div style={{ color: 'var(--rose)' }}>GET / HTTP/1.1</div>
               <div style={{ color: 'var(--rose)' }}>Host: 192.168.1.100:8080</div>
@@ -887,7 +887,7 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
               <div style={{ color: 'var(--rose)' }}>Accept: text/html,application/xhtml+xml</div>
               <div style={{ color: 'var(--rose)' }}>Accept-Encoding: gzip, deflate</div>
               <div style={{ color: 'var(--rose)', marginBottom: '0.5rem' }}>Connection: keep-alive</div>
-              <div style={{ color: 'var(--emerald)', fontWeight: 'bold' }}>// 192.168.1.100 > 192.168.1.5: HTTP/1.0 200 OK</div>
+              <div style={{ color: 'var(--emerald)', fontWeight: 'bold' }}>// 192.168.1.100 &gt; 192.168.1.5: HTTP/1.0 200 OK</div>
             </Terminal>
           </div>
         </div>
