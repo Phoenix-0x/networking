@@ -772,11 +772,11 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           <div className="flex-col-gap">
             <div className="glass-panel stagger d-3" style={{ borderLeft: '4px solid var(--amber)' }}>
               <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>BGP Hijacking</h3>
-              <p style={{ margin: 0 }}>A rogue ISP falsely announces a shorter route, stealing traffic meant for another country.</p>
+              <p style={{ margin: 0 }}>A rogue ISP falsely announces a shorter route, stealing traffic meant for another destination. <strong>(e.g., In 2008, Pakistan accidentally hijacked global routing for YouTube while attempting to censor it domestically.)</strong></p>
             </div>
             <div className="glass-panel stagger d-4" style={{ borderLeft: '4px solid var(--rose)' }}>
               <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>BGP Leak</h3>
-              <p style={{ margin: 0 }}>Misconfigured routers accidentally advertise they can route all of Google's traffic, instantly causing a global outage.</p>
+              <p style={{ margin: 0 }}>Misconfigured routers accidentally advertise they can route massive subnets, crippling networks. <strong>(e.g., Facebook entirely disappeared from the internet for 6 hours in 2021 due to a flawed BGP update.)</strong></p>
             </div>
           </div>
         </div>
