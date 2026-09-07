@@ -413,6 +413,13 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
               </h3>
               <p>Connecting to your own public IP from inside? Cheap routers drop the packet.</p>
             </div>
+            
+            <div className="stagger d-5" style={{ marginTop: '1rem' }}>
+              <Terminal active={active} cmd="curl -s https://1.1.1.1/cdn-cgi/trace | grep ip=" fontSize="0.8rem">
+                <div style={{ color: 'var(--text-muted)' }}>// Find your true Public IP beyond the CGNAT router</div>
+                <div style={{ color: 'var(--emerald)', marginTop: '0.5rem', fontWeight: 'bold' }}>ip=142.250.190.46</div>
+              </Terminal>
+            </div>
           </div>
         </div>
       </Slide>
