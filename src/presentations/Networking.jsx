@@ -781,12 +781,18 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           </div>
           <div className="flex-col-gap">
             <div className="glass-panel stagger d-3" style={{ borderLeft: '4px solid var(--amber)' }}>
-              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>BGP Hijacking</h3>
-              <p style={{ margin: 0 }}>A rogue ISP falsely announces a shorter route, stealing traffic meant for another destination. <strong>(e.g., In 2008, Pakistan accidentally hijacked global routing for YouTube while attempting to censor it domestically.)</strong></p>
+              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>
+                <i className="fa-solid fa-route" style={{ color: 'var(--amber)', marginRight: '0.5rem' }}></i> 
+                The 2008 YouTube Hijack
+              </h3>
+              <p style={{ margin: 0 }}>Pakistan's telecom attempted to locally censor YouTube but accidentally announced to the global BGP routing table that they were the fastest route to YouTube, causing a global outage for the site.</p>
             </div>
             <div className="glass-panel stagger d-4" style={{ borderLeft: '4px solid var(--rose)' }}>
-              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>BGP Leak</h3>
-              <p style={{ margin: 0 }}>Misconfigured routers accidentally advertise they can route massive subnets, crippling networks. <strong>(e.g., Facebook entirely disappeared from the internet for 6 hours in 2021 due to a flawed BGP update.)</strong></p>
+              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>
+                <i className="fa-solid fa-plug-circle-xmark" style={{ color: 'var(--rose)', marginRight: '0.5rem' }}></i> 
+                The Day Facebook Went Dark
+              </h3>
+              <p style={{ margin: 0 }}>A flawed BGP update caused Facebook's routers to withdraw their own IP routes. Facebook, Instagram, and WhatsApp completely disappeared from the global internet for 6 hours in 2021.</p>
             </div>
           </div>
         </div>
