@@ -881,9 +881,9 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
             <div className="glass-panel" style={{ borderLeft: '4px solid var(--amber)' }}>
               <h3 style={{ color: 'var(--amber)', fontSize: '1.2rem' }}>Live Lab: The Intercept</h3>
               <p style={{ margin: 0, fontSize: '0.9rem' }}>
-                1. Presenter starts: <span className="mono text-gradient grad-amber">python3 -m http.server 8080</span><br />
-                2. Starts sniffer: <span className="mono text-gradient grad-amber">sudo tcpdump -l -i any 'tcp port 8080' -A</span><br />
-                3. Audience visits the IP on their phones. We instantly see their HTTP headers in the clear.
+                1. Initialize Local Server: <span className="mono text-gradient grad-amber">python3 -m http.server 8080</span><br />
+                2. Deploy Packet Sniffer: <span className="mono text-gradient grad-amber">sudo tcpdump -l -i any 'tcp port 8080' -A</span><br />
+                3. Observe inbound HTTP traffic in cleartext (Headers & Payload exposed).
               </p>
             </div>
           </div>
@@ -1056,23 +1056,6 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
         <p className="stagger d-3" style={{ color: 'var(--text-main)', maxWidth: '900px', fontSize: '1.5rem', marginTop: '2rem' }}>
           The connection is established. You now understand what happens under the hood.
         </p>
-        <div className="stagger d-4" style={{ marginTop: '3rem' }}>
-          <button
-            onClick={onTerminate}
-            className="glass-panel"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '10px',
-              padding: '1rem 3rem', color: 'var(--rose)',
-              borderColor: 'rgba(244, 63, 94, 0.4)',
-              background: 'rgba(244, 63, 94, 0.08)',
-              fontFamily: '"JetBrains Mono", monospace',
-              fontSize: '1rem', cursor: 'pointer',
-              transition: 'all 0.2s',
-            }}
-          >
-            <i className="fa-solid fa-power-off"></i> Terminate Session
-          </button>
-        </div>
       </Slide>
     )
   }

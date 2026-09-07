@@ -19,15 +19,11 @@ const logs = [
   { text: <span><span style={{ color: 'var(--cyan)' }}>Password:</span> </span>, delay: 500 },
   { text: <span style={{ color: 'var(--text-muted)' }}>Last login: Fri Sep  4 19:00:10 on tty1</span>, delay: 200 },
   { text: " ", delay: 100 },
-  { text: <span><span style={{ color: 'var(--cyan)' }}>{config.presentation.terminalPrompt}</span> ssh px@10.0.13.37 -p 2222</span>, delay: 600 },
-  { text: <span><span style={{ color: 'var(--cyan)' }}>px@10.0.13.37's password:</span> </span>, delay: 500 },
+  { text: <span><span style={{ color: 'var(--cyan)' }}>{config.presentation.terminalPrompt}</span> ssh root@10.0.13.37 -p 2222</span>, delay: 600 },
+  { text: <span><span style={{ color: 'var(--cyan)' }}>root@10.0.13.37's password:</span> </span>, delay: 500 },
   { text: <span style={{ color: 'var(--emerald)' }}>Authentication successful.</span>, delay: 200 },
   { text: " ", delay: 100 },
-  { text: <span style={{ color: 'var(--text-muted)' }}>==================================================</span>, delay: 50 },
-  { text: <span style={{ color: 'var(--purple)', fontWeight: 'bold', letterSpacing: '2px' }}>   SYS.NET CORE SECURE SERVER - ACCESS GRANTED    </span>, delay: 50 },
-  { text: <span style={{ color: 'var(--text-muted)' }}>==================================================</span>, delay: 50 },
-  { text: " ", delay: 100 },
-  { text: <span><span style={{ color: 'var(--cyan)' }}>[px@sys-net-core ~]$</span> ./init_masterclass.sh</span>, delay: 600 }
+  { text: <span><span style={{ color: 'var(--cyan)' }}>root@archlinux:~#</span> ./init_masterclass.sh</span>, delay: 600 }
 ];
 
 export default function SystemInitIntro({ onComplete }) {

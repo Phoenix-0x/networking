@@ -100,18 +100,9 @@ function App() {
       }
     };
 
-    const handleDoubleClick = () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(console.error);
-      } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-      }
-    };
-
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("touchstart", handleTouchStart, { passive: true });
     document.addEventListener("touchend", handleTouchEnd, { passive: true });
-    document.addEventListener("dblclick", handleDoubleClick);
 
     return () => {
       document.removeEventListener('click', initFullscreen);
@@ -120,7 +111,6 @@ function App() {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("touchstart", handleTouchStart);
       document.removeEventListener("touchend", handleTouchEnd);
-      document.removeEventListener("dblclick", handleDoubleClick);
     };
   }, [isAnimating, currentSlide, totalSlides, introFinished]);
 
@@ -158,8 +148,48 @@ function App() {
       <div className="progress-container">
         <div id="progress-bar" style={{ width: `${progress}%` }}></div>
       </div>
-      
-      <div className="global-footer">{config.presentation.footerText}</div>
+      {/* System Controls (Top Right) */}
+      {introFinished && (
+        <div style={{ position: 'fixed', top: '24px', right: '32px', zIndex: 10000, display: 'flex', gap: '12px' }}>
+          <button
+            onClick={() => {
+              if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(console.error);
+              } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+              }
+            }}
+            style={{
+              width: '44px', height: '44px', borderRadius: '50%',
+              background: 'rgba(15, 15, 18, 0.4)', border: '1px solid rgba(255, 255, 255, 0.08)',
+              color: 'rgba(255, 255, 255, 0.6)', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              backdropFilter: 'blur(8px)', transition: 'all 0.2s ease'
+            }}
+            onMouseOver={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.background = 'rgba(25, 25, 30, 0.6)'; }}
+            onMouseOut={e => { e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(15, 15, 18, 0.4)'; }}
+            title="Toggle Fullscreen"
+          >
+            <i className="fa-solid fa-expand"></i>
+          </button>
+          
+          <button
+            onClick={() => setShowConfirm(true)}
+            style={{
+              width: '44px', height: '44px', borderRadius: '50%',
+              background: 'rgba(244, 63, 94, 0.1)', border: '1px solid rgba(244, 63, 94, 0.2)',
+              color: 'var(--rose)', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              backdropFilter: 'blur(8px)', transition: 'all 0.2s ease'
+            }}
+            onMouseOver={e => { e.currentTarget.style.background = 'rgba(244, 63, 94, 0.2)'; e.currentTarget.style.borderColor = 'rgba(244, 63, 94, 0.4)'; }}
+            onMouseOut={e => { e.currentTarget.style.background = 'rgba(244, 63, 94, 0.1)'; e.currentTarget.style.borderColor = 'rgba(244, 63, 94, 0.2)'; }}
+            title="Terminate Session"
+          >
+            <i className="fa-solid fa-power-off"></i>
+          </button>
+        </div>
+      )}
 
       <div className="virtual-controls">
         <button className="control-btn" id="btn-prev" onClick={prevSlide}><i className="fa-solid fa-chevron-left"></i></button>
