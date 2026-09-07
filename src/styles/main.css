@@ -619,6 +619,7 @@ p {
   .slide-content {
     max-height: none;
     overflow-y: visible;
+    justify-content: flex-start;
   }
   body,
   html {
