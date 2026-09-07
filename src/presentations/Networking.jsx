@@ -748,13 +748,15 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           </div>
           <div className="stagger d-4">
             <h3 style={{ color: '#fff', marginBottom: '1rem' }}>Fetching Data via cURL</h3>
-            <Terminal active={active} cmd="curl -s https://dummyjson.com/products/1 | jq" fontSize="0.8rem">
+            <Terminal active={active} cmd="curl -s https://ipinfo.io/8.8.8.8/json | jq" fontSize="0.8rem">
               <div style={{ color: 'var(--cyan)' }}>{'{'}</div>
-              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"id"</span>: <span style={{ color: 'var(--emerald)' }}>1</span>,</div>
-              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"title"</span>: <span style={{ color: 'var(--emerald)' }}>"Essence Mascara Lash Princess"</span>,</div>
-              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"price"</span>: <span style={{ color: 'var(--emerald)' }}>9.99</span>,</div>
-              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"category"</span>: <span style={{ color: 'var(--emerald)' }}>"beauty"</span>,</div>
-              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"stock"</span>: <span style={{ color: 'var(--emerald)' }}>5</span></div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"ip"</span>: <span style={{ color: 'var(--emerald)' }}>"8.8.8.8"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"hostname"</span>: <span style={{ color: 'var(--emerald)' }}>"dns.google"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"city"</span>: <span style={{ color: 'var(--emerald)' }}>"Mountain View"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"region"</span>: <span style={{ color: 'var(--emerald)' }}>"California"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"country"</span>: <span style={{ color: 'var(--emerald)' }}>"US"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"loc"</span>: <span style={{ color: 'var(--emerald)' }}>"37.4056,-122.0775"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"org"</span>: <span style={{ color: 'var(--emerald)' }}>"AS15169 Google LLC"</span></div>
               <div style={{ color: 'var(--cyan)' }}>{'}'}</div>
               <div style={{ color: 'var(--emerald)', marginTop: '1rem' }}>// The app UI parses this JSON and displays it beautifully.</div>
             </Terminal>
