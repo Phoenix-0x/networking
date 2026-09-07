@@ -131,9 +131,11 @@ export default function Aurora(props) {
     if (!ctn) return;
 
     const renderer = new Renderer({
+      dpr: Math.min(window.devicePixelRatio || 1, 2),
       alpha: true,
       premultipliedAlpha: true,
-      antialias: true
+      antialias: false, // Fixes severe MSAA alpha flickering on Adreno GPUs (Snapdragon)
+      powerPreference: 'high-performance'
     });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);

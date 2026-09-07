@@ -96,7 +96,9 @@ const LightRays = ({
 
       const renderer = new Renderer({
         dpr: Math.min(window.devicePixelRatio, 2),
-        alpha: true
+        alpha: true,
+        antialias: false,
+        powerPreference: 'high-performance'
       });
       rendererRef.current = renderer;
 
