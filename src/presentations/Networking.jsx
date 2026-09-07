@@ -521,24 +521,46 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
         </p>
 
         <div className="grid-2">
-          <Terminal active={active} cmd="java -jar purpur.jar" staggerClass="stagger d-3" fontSize="0.85rem">
-            <div style={{ color: 'var(--text-muted)' }}>[Server thread/INFO]: Starting minecraft server version 1.20.4</div>
-            <div style={{ color: 'var(--emerald)' }}>[Server thread/INFO]: Done (4.123s)! For help, type "help"</div>
-            <div style={{ color: 'var(--rose)', marginTop: '1.5rem' }}>// Running locally on 0.0.0.0:25565</div>
-            <div style={{ color: 'var(--rose)' }}>// Cannot be joined via Local IP on 5G.</div>
-          </Terminal>
+          <div className="flex-col-gap stagger d-3">
+            <div className="glass-panel" style={{ borderTop: '4px solid var(--emerald)' }}>
+              <h3 style={{ color: 'var(--emerald)', marginBottom: '1rem' }}>How Playit.gg Works</h3>
+              <ul className="sleek-list" style={{ fontSize: '1rem' }}>
+                <li>
+                  <i className="fa-solid fa-server" style={{ color: 'var(--rose)' }}></i>
+                  <strong>1. Local Binding:</strong> Server listens on <span className="mono">0.0.0.0:25565</span>.
+                </li>
+                <li>
+                  <i className="fa-solid fa-arrow-right-arrow-left" style={{ color: 'var(--amber)' }}></i>
+                  <strong>2. Outbound Tunnel:</strong> Playit Agent creates an outbound TCP connection to their global network, bypassing local CGNAT firewalls.
+                </li>
+                <li>
+                  <i className="fa-solid fa-globe" style={{ color: 'var(--cyan)' }}></i>
+                  <strong>3. Public Relay:</strong> The network provisions a public hostname (<span className="mono">spicy-camel.playit.gg</span>) bridging external players into the tunnel.
+                </li>
+              </ul>
+            </div>
+          </div>
 
-          <Terminal active={active} cmd="cloudflared tunnel --tcp localhost:25565" staggerClass="stagger d-4" fontSize="0.85rem">
-            <div style={{ color: 'var(--text-muted)' }}>2026-09-02T19:05:16Z INF Requesting new TCP Tunnel...</div>
-            <div style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>+-------------------------------------------+</div>
-            <div style={{ color: 'var(--text-muted)' }}>
-              |<span className="hl-cyan" style={{ fontWeight: 'bold', fontSize: '1rem' }}>mc.random-words.trycloudflare.com</span>|
-            </div>
-            <div style={{ color: 'var(--text-muted)' }}>+-------------------------------------------+</div>
-            <div style={{ color: 'var(--emerald)', marginTop: '1.5rem', fontWeight: 'bold' }}>
-              // Audience: Add this server address now!
-            </div>
-          </Terminal>
+          <div className="flex-col-gap stagger d-4" style={{ justifyContent: 'center' }}>
+            <Terminal active={active} cmd="java -jar purpur.jar" fontSize="0.75rem">
+              <div style={{ color: 'var(--text-muted)' }}>[Server thread/INFO]: Starting minecraft server version 1.20.4</div>
+              <div style={{ color: 'var(--emerald)' }}>[Server thread/INFO]: Done (4.123s)! For help, type "help"</div>
+            </Terminal>
+
+            <Terminal active={active} cmd="./playit" fontSize="0.75rem">
+              <div style={{ color: 'var(--text-muted)' }}>[INFO] Agent starting...</div>
+              <div style={{ color: 'var(--text-muted)' }}>[INFO] Connecting to global routing network...</div>
+              <div style={{ color: 'var(--cyan)' }}>[SUCCESS] Outbound TCP Tunnel Established</div>
+              <div style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>+-------------------------------------------+</div>
+              <div style={{ color: 'var(--text-muted)' }}>
+                |<span className="hl-cyan" style={{ fontWeight: 'bold', fontSize: '1rem' }}>spicy-camel.auto.playit.gg</span>|
+              </div>
+              <div style={{ color: 'var(--text-muted)' }}>+-------------------------------------------+</div>
+              <div style={{ color: 'var(--emerald)', marginTop: '0.5rem', fontWeight: 'bold' }}>
+                // Audience: Connect using this address!
+              </div>
+            </Terminal>
+          </div>
         </div>
       </Slide>
     )
