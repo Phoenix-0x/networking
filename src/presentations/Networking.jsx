@@ -392,9 +392,9 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
             <div style={{ margin: '1.5rem 0', padding: '1rem', border: '2px dashed var(--rose)', borderRadius: '12px', textAlign: 'center' }}>
               <div className="mono" style={{ color: '#fff', marginBottom: '0.5rem', fontSize: '1rem' }}>ISP Router (142.x.x.x)</div>
               <div style={{ padding: '1rem', background: 'rgba(245, 158, 11, 0.1)', border: '2px dashed var(--amber)', borderRadius: '8px' }}>
-                <div className="mono" style={{ color: 'var(--amber)', marginBottom: '0.5rem', fontSize: '1rem' }}>Home Router (100.64.x.x)</div>
+                <div className="mono" style={{ color: 'var(--amber)', marginBottom: '0.5rem', fontSize: '1rem' }}>Home Router (100.64.0.0/10 CGNAT)</div>
                 <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', border: '2px dashed var(--emerald)', borderRadius: '6px' }}>
-                  <div className="mono" style={{ color: 'var(--emerald)', fontSize: '1rem' }}>Your PC (192.168.1)</div>
+                  <div className="mono" style={{ color: 'var(--emerald)', fontSize: '1rem' }}>Your PC (192.168.1.5)</div>
                 </div>
               </div>
             </div>
