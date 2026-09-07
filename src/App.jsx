@@ -6,6 +6,8 @@ import ShutdownSequence from './components/ShutdownSequence.jsx';
 import ConfirmShutdown from './components/ConfirmShutdown.jsx';
 import FloatingToolkit from './components/Toolkit/FloatingToolkit.jsx';
 import AmbientBackground from './components/AmbientBackground.jsx';
+import CustomCursor from './components/CustomCursor.jsx';
+import ClickSpark from './components/react-bits/Animations/ClickSpark/ClickSpark.jsx';
 import { audio } from './utils/audioEngine';
 
 function App() {
@@ -100,9 +102,12 @@ function App() {
       }
     };
 
+    const handleContextMenu = (e) => e.preventDefault();
+
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("touchstart", handleTouchStart, { passive: true });
     document.addEventListener("touchend", handleTouchEnd, { passive: true });
+    document.addEventListener("contextmenu", handleContextMenu);
 
     return () => {
       document.removeEventListener('click', initFullscreen);
@@ -111,6 +116,7 @@ function App() {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("touchstart", handleTouchStart);
       document.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("contextmenu", handleContextMenu);
     };
   }, [isAnimating, currentSlide, totalSlides, introFinished]);
 
@@ -126,7 +132,15 @@ function App() {
   const themeColor = config.theme.colors[currentSlideObj.color] || config.theme.colors.cyan;
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <ClickSpark
+      sparkColor={themeColor.primary}
+      sparkSize={12}
+      sparkRadius={20}
+      sparkCount={8}
+      duration={500}
+    >
+      <CustomCursor />
+      
       {/* System Init Intro (boot screen) */}
       {!introFinished && <SystemInitIntro onComplete={() => setIntroFinished(true)} />}
 
@@ -215,7 +229,7 @@ function App() {
       
       {/* Interactive Toolkit (Assistive Touch) */}
       {introFinished && <FloatingToolkit currentSlide={currentSlide} />}
-    </div>
+    </ClickSpark>
   );
 }
 
