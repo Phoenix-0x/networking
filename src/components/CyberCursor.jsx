@@ -13,8 +13,15 @@ export default function CyberCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    // Detect coarse pointer (touch device) on mount
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+      setIsTouch(true);
+      return;
+    }
+
     // 1. Instantly update the dot and track target for the ring
     const onMouseMove = (e) => {
       mouse.current.x = e.clientX;
@@ -94,6 +101,8 @@ export default function CyberCursor() {
   const ringBorder = isHovering ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.3)';
   const ringBg = isClicking ? 'rgba(0, 242, 254, 0.2)' : isHovering ? 'rgba(0, 242, 254, 0.05)' : 'transparent';
   const dotScale = isHovering ? 'scale(0)' : isClicking ? 'scale(1.5)' : 'scale(1)';
+
+  if (isTouch) return null;
 
   return (
     <>

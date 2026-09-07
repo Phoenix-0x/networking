@@ -16,7 +16,11 @@
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-* {
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -648,15 +652,12 @@ p {
 body {
   user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Custom Cursor & QoL Constraints */
-* {
-  cursor: none !important;
-}
-
-body {
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
