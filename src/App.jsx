@@ -5,6 +5,7 @@ import SystemInitIntro from './components/SystemInitIntro.jsx';
 import ShutdownSequence from './components/ShutdownSequence.jsx';
 import ConfirmShutdown from './components/ConfirmShutdown.jsx';
 import FloatingToolkit from './components/Toolkit/FloatingToolkit.jsx';
+import AmbientBackground from './components/AmbientBackground.jsx';
 import { audio } from './utils/audioEngine';
 
 function App() {
@@ -27,18 +28,11 @@ function App() {
   const [shutdownActive, setShutdownActive] = useState(false);
 
   const [isAnimating, setIsAnimating] = useState(false);
-  const [orbPositions, setOrbPositions] = useState({ p1x: 50, p1y: 50, p2x: 50, p2y: 50 });
   const touchStartX = useRef(0);
 
   useEffect(() => {
     localStorage.setItem("networking_slide_index", currentSlide);
     
-    setOrbPositions({
-      p1x: 10 + Math.random() * 30,
-      p1y: 10 + Math.random() * 30,
-      p2x: 60 + Math.random() * 30,
-      p2y: 60 + Math.random() * 30,
-    });
     
     const timer = setTimeout(() => setIsAnimating(false), 800);
     return () => clearTimeout(timer);
@@ -158,10 +152,7 @@ function App() {
       {shutdownActive && <ShutdownSequence onComplete={handleShutdownComplete} />}
 
       {/* Ambient Background */}
-      <div className="ambient-bg">
-        <div className="glow-orb" id="orb1" style={{ background: themeColor.glow, transform: `translate3d(${orbPositions.p1x}vw, ${orbPositions.p1y}vh, 0)` }}></div>
-        <div className="glow-orb" id="orb2" style={{ background: config.theme.colors.purple.glow, transform: `translate3d(${orbPositions.p2x}vw, ${orbPositions.p2y}vh, 0)` }}></div>
-      </div>
+      <AmbientBackground themeColor={themeColor.primary} />
 
       {/* UI Overlay */}
       <div className="progress-container">

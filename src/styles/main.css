@@ -94,18 +94,15 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50vw;
-  height: 50vw;
+  width: 18vw;
+  height: 18vw;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(35px);
   opacity: 0.15;
   transition:
-    transform 3s var(--ease-smooth),
+    transform 3.5s var(--ease-smooth),
     background 1.5s ease;
-  transform: translate3d(-50%, -50%, 0);
   will-change: transform;
-  top: 0;
-  left: 0;
 }
 
 /* Deck & Slides */
