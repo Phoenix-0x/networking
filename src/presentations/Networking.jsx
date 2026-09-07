@@ -426,33 +426,52 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
         <h2 className="slide-title text-gradient grad-cyan stagger d-1">
           <i className="fa-solid fa-gavel"></i> Censorship & DPI
         </h2>
-        <p className="stagger d-2" style={{ color: '#fff', fontSize: '1.8rem', marginBottom: '2rem' }}>
-          How does an ISP enforce an app ban?
-        </p>
+        <div className="grid-2">
+          <div className="flex-col-gap">
+            <p className="stagger d-2" style={{ color: '#fff', fontSize: '1.2rem', marginBottom: '1rem' }}>
+              How does an ISP enforce an app ban?
+            </p>
+            <div className="glass-panel stagger d-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1.5rem', padding: '1rem' }}>
+              <h1 className="num-massive" style={{ color: 'var(--purple)', fontSize: '3rem' }}>1</h1>
+              <div>
+                <h3 style={{ color: '#fff', marginBottom: '0.25rem', fontSize: '1.1rem' }}>DNS Spoofing</h3>
+                <p style={{ margin: 0, fontSize: '0.9rem' }}>You ask for <span className="mono text-gradient grad-purple">telegram.org</span>. ISP returns <span className="mono">0.0.0.0</span>.</p>
+              </div>
+            </div>
 
-        <div className="flex-col-gap">
-          <div className="glass-panel stagger d-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
-            <h1 className="num-massive" style={{ color: 'var(--purple)' }}>1</h1>
-            <div>
-              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>DNS Spoofing</h3>
-              <p style={{ margin: 0 }}>You ask for <span className="mono text-gradient grad-purple">telegram.org</span>. ISP returns <span className="mono">0.0.0.0</span>.</p>
+            <div className="glass-panel stagger d-4" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1.5rem', padding: '1rem' }}>
+              <h1 className="num-massive" style={{ color: 'var(--rose)', fontSize: '3rem' }}>2</h1>
+              <div>
+                <h3 style={{ color: '#fff', marginBottom: '0.25rem', fontSize: '1.1rem' }}>SNI Filtering (DPI)</h3>
+                <p style={{ margin: 0, fontSize: '0.9rem' }}>Firewall reads plain text "Server Name", and injects a <strong>TCP RST</strong> packet to kill it.</p>
+              </div>
+            </div>
+
+            <div className="glass-panel stagger d-5" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1.5rem', padding: '1rem' }}>
+              <h1 className="num-massive" style={{ color: 'var(--amber)', fontSize: '3rem' }}>3</h1>
+              <div>
+                <h3 style={{ color: '#fff', marginBottom: '0.25rem', fontSize: '1.1rem' }}>BGP Blackholing</h3>
+                <p style={{ margin: 0, fontSize: '0.9rem' }}>ISPs advertise false routes for IPs, dropping traffic into a void.</p>
+              </div>
+            </div>
+            
+            <div className="stagger d-6" style={{ background: 'rgba(56, 189, 248, 0.1)', padding: '1rem', border: '1px dashed var(--cyan)', borderRadius: '8px' }}>
+              <p style={{ margin: 0, fontSize: '0.9rem' }}>
+                <i className="fa-solid fa-shield-halved" style={{ color: 'var(--cyan)', marginRight: '0.5rem' }}></i>
+                <strong>QUIC (HTTP/3) Solution:</strong> Encrypts the entire SNI handshake (TLS 1.3) directly over UDP, blinding DPI firewalls.
+              </p>
             </div>
           </div>
 
-          <div className="glass-panel stagger d-4" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
-            <h1 className="num-massive" style={{ color: 'var(--rose)' }}>2</h1>
-            <div>
-              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>SNI Filtering (DPI)</h3>
-              <p style={{ margin: 0 }}>Firewall reads plain text "Server Name", and injects a <strong>TCP RST</strong> packet to kill it.</p>
-            </div>
-          </div>
-
-          <div className="glass-panel stagger d-5" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
-            <h1 className="num-massive" style={{ color: 'var(--amber)' }}>3</h1>
-            <div>
-              <h3 style={{ color: '#fff', marginBottom: '0.25rem' }}>BGP Blackholing</h3>
-              <p style={{ margin: 0 }}>ISPs advertise false routes for IPs, dropping traffic into a void.</p>
-            </div>
+          <div className="flex-col-gap stagger d-7" style={{ justifyContent: 'center' }}>
+            <Terminal active={active} cmd="tcpdump -l -i any 'tcp port 443' -A | grep -a -i netflix" fontSize="0.75rem">
+              <div style={{ color: 'var(--text-muted)' }}>listening on any, link-type LINUX_SLL2...</div>
+              <div style={{ color: 'var(--rose)' }}>...netflix.com.........!.........+.....-.....</div>
+            </Terminal>
+            <Terminal active={active} cmd="curl -s https://netflix.com -v" fontSize="0.75rem">
+              <div style={{ color: 'var(--text-muted)' }}>* TLSv1.3 (OUT), TLS handshake, Client hello (1):</div>
+              <div style={{ color: 'var(--rose)' }}>* Recv failure: Connection reset by peer</div>
+            </Terminal>
           </div>
         </div>
       </Slide>
