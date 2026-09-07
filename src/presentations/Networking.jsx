@@ -783,11 +783,13 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           <i className="fa-solid fa-tv icon-massive" style={{ color: 'var(--rose)' }}></i>
           <h3 style={{ color: '#fff', fontSize: '2.5rem', marginBottom: '2rem' }}>The Dilemma</h3>
           <p style={{ fontSize: '1.5rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-            You bought a Smart TV. It has no app store, and you <strong>cannot</strong> install an adblocker on it. 
-            However, it is secretly sending your viewing habits to <span className="mono text-gradient grad-rose">trackers.smart-tv.com</span> every 5 seconds.
+            You buy a Smart TV. It has no app store, and you <strong>cannot</strong> install an adblocker on it.
+          </p>
+          <p style={{ fontSize: '1.5rem', color: 'var(--text-muted)', lineHeight: 1.6, marginTop: '1rem' }}>
+            You channel your inner Mr. Robot, run a quick packet capture, and realize it is secretly sending your viewing habits to <span className="mono text-gradient grad-rose">trackers.smart-tv.com</span> every 5 seconds.
           </p>
           <p style={{ fontWeight: 'bold', marginTop: '3rem', fontSize: '2rem', color: '#fff' }}>
-            Based on everything we've covered... how do you stop it?
+            Without touching the TV... how do you kill the connection?
           </p>
         </div>
       </Slide>
