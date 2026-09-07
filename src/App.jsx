@@ -6,7 +6,7 @@ import ShutdownSequence from './components/ShutdownSequence.jsx';
 import ConfirmShutdown from './components/ConfirmShutdown.jsx';
 import FloatingToolkit from './components/Toolkit/FloatingToolkit.jsx';
 import AmbientBackground from './components/AmbientBackground.jsx';
-import CustomCursor from './components/CustomCursor.jsx';
+import CyberCursor from './components/CyberCursor.jsx';
 import ClickSpark from './components/react-bits/Animations/ClickSpark/ClickSpark.jsx';
 import { audio } from './utils/audioEngine';
 
@@ -139,7 +139,7 @@ function App() {
       sparkCount={8}
       duration={500}
     >
-      <CustomCursor />
+      <CyberCursor />
       
       {/* System Init Intro (boot screen) */}
       {!introFinished && <SystemInitIntro onComplete={() => setIntroFinished(true)} />}
