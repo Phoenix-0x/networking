@@ -546,6 +546,14 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
                 </li>
               </ul>
             </div>
+            <div className="glass-panel" style={{ borderTop: '4px solid var(--purple)' }}>
+              <h3 style={{ color: 'var(--purple)', marginBottom: '0.5rem' }}>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i> The NAT Hole-Punch
+              </h3>
+              <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
+                By initiating the connection from <em>inside</em> the network outwards, we punch a hole through the NAT. Stateful firewalls allow outbound traffic and inherently keep the port open for the returning traffic.
+              </p>
+            </div>
           </div>
 
           <div className="flex-col-gap stagger d-4" style={{ justifyContent: 'center' }}>
