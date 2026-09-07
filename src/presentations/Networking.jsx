@@ -845,27 +845,29 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
       </Slide>
     )
   },
-  // Slide 22: Packet Sniffing (Wireshark) & The IoT Threat
+  // Slide 22: Packet Sniffing & The HTTP Flaw
   {
     color: "rose",
     component: ({ active }) => (
       <Slide active={active} color="rose">
         <h2 className="slide-title text-gradient grad-rose stagger d-1">
-          <i className="fa-solid fa-wave-square"></i> Sniffing the Wire: IoT & Plaintext
+          <i className="fa-solid fa-wave-square"></i> Sniffing the Wire: Plaintext HTTP
         </h2>
         <div className="grid-2">
           <div className="flex-col-gap stagger d-2">
             <p>What happens when traffic isn't encrypted? It flies through the air in pure plaintext.</p>
             <div className="glass-panel" style={{ borderLeft: '4px solid var(--rose)' }}>
-              <h3 style={{ color: 'var(--rose)', fontSize: '1.2rem' }}>The Smart Bulb Flaw</h3>
+              <h3 style={{ color: 'var(--rose)', fontSize: '1.2rem' }}>The Plaintext Flaw</h3>
               <p style={{ margin: 0 }}>
-                Many cheap IoT devices use plain HTTP on local networks. If you turn on a smart bulb, your phone broadcasts the command to everyone on the Wi-Fi.
+                Whether it's an old website or a cheap IoT smart bulb, communicating over raw HTTP means anyone sharing your Wi-Fi can passively read your data.
               </p>
             </div>
             <div className="glass-panel" style={{ borderLeft: '4px solid var(--amber)' }}>
-              <h3 style={{ color: 'var(--amber)', fontSize: '1.2rem' }}>Replay Attacks</h3>
-              <p style={{ margin: 0 }}>
-                A hacker uses <strong>Wireshark</strong> to passively capture that packet. They don't need the password; they just resend the exact same captured packet to control the device themselves.
+              <h3 style={{ color: 'var(--amber)', fontSize: '1.2rem' }}>Live Lab: The Intercept</h3>
+              <p style={{ margin: 0, fontSize: '0.9rem' }}>
+                1. Presenter starts: <span className="mono text-gradient grad-amber">python3 -m http.server 8080</span><br />
+                2. Starts sniffer: <span className="mono text-gradient grad-amber">sudo tcpdump -l -i any 'tcp port 8080' -A</span><br />
+                3. Audience visits the IP on their phones. We instantly see their HTTP headers in the clear.
               </p>
             </div>
           </div>
@@ -873,20 +875,20 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           <div className="stagger d-3" style={{ display: 'flex', flexDirection: 'column' }}>
             <Terminal 
               active={active} 
-              cmd="tcpdump -i wlan0 -A port 80" 
-              output={`listening on wlan0, link-type EN10MB (Ethernet)
-14:22:15.123 IP 192.168.1.5 > 192.168.1.100.80: Flags [P.], seq 1:215
-E...(.@.@.......d...P.W...5.P...k...
-POST /api/device/state HTTP/1.1
-Host: 192.168.1.100
-Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
-
-{"state": "ON", "color": "#ff0000"}`} 
-            />
-            <p className="mono" style={{ color: 'var(--rose)', fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' }}>
-              Base64 decoded: admin:admin123 (Stolen in plaintext)
-            </p>
+              cmd="sudo tcpdump -l -i any 'tcp port 8080' -A" 
+              fontSize="0.75rem"
+            >
+              <div style={{ color: 'var(--text-muted)' }}>listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes</div>
+              <div style={{ color: 'var(--text-muted)' }}>14:22:15.123 IP 192.168.1.5.53421 > 192.168.1.100.8080: Flags [P.], seq 1:215, ack 1, win 502, options [nop,nop,TS val 123 ecr 456], length 215</div>
+              <div style={{ color: 'var(--rose)', marginTop: '0.5rem' }}>E...(.@.@.......d...P.W...5.P...k...</div>
+              <div style={{ color: 'var(--rose)' }}>GET / HTTP/1.1</div>
+              <div style={{ color: 'var(--rose)' }}>Host: 192.168.1.100:8080</div>
+              <div style={{ color: 'var(--rose)' }}>User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15</div>
+              <div style={{ color: 'var(--rose)' }}>Accept: text/html,application/xhtml+xml</div>
+              <div style={{ color: 'var(--rose)' }}>Accept-Encoding: gzip, deflate</div>
+              <div style={{ color: 'var(--rose)', marginBottom: '0.5rem' }}>Connection: keep-alive</div>
+              <div style={{ color: 'var(--emerald)', fontWeight: 'bold' }}>// 192.168.1.100 > 192.168.1.5: HTTP/1.0 200 OK</div>
+            </Terminal>
           </div>
         </div>
       </Slide>
