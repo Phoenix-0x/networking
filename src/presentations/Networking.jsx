@@ -717,33 +717,38 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
       </Slide>
     )
   },
-  // Slide 21b: DDoS
+  // Slide 21b: Web APIs & REST
   {
     color: "amber",
     component: ({ active }) => (
       <Slide active={active} color="amber">
         <h2 className="slide-title text-gradient grad-amber stagger d-1">
-          <i className="fa-solid fa-burst"></i> Exploits: DoS vs DDoS
+          <i className="fa-solid fa-code"></i> REST APIs & Web Requests
         </h2>
         <div className="grid-2">
           <div className="flex-col-gap">
             <div className="glass-panel stagger d-2" style={{ borderLeft: '4px solid var(--amber)' }}>
-              <h3>Denial of Service (DoS)</h3>
-              <p>A single machine sends malformed packets (like a SYN Flood) to crash a server's network stack. Easily blocked by IP rules.</p>
+              <h3>Application Programming Interfaces</h3>
+              <p>An API allows two applications to talk to each other. When you open a mobile app, it sends a <strong>GET</strong> request to a server, which responds with raw data, usually in <strong>JSON</strong> format.</p>
             </div>
             <div className="glass-panel stagger d-3" style={{ borderLeft: '4px solid var(--rose)' }}>
-              <h3>Distributed (DDoS) & Botnets</h3>
-              <p>100,000 infected IoT devices (smart fridges, cameras) coordinate to send valid traffic simultaneously. The server legitimately runs out of bandwidth.</p>
+              <h3 style={{ color: 'var(--rose)' }}>
+                <i className="fa-solid fa-burst"></i> The DoS Connection
+              </h3>
+              <p>What happens if a botnet sends this exact, legitimate <span className="mono">curl</span> request 10 million times a second? The server's database crashes. This is a <strong>Layer-7 (Application) DDoS</strong> attack.</p>
             </div>
           </div>
           <div className="stagger d-4">
-            <h3 style={{ color: '#fff', marginBottom: '1rem' }}>The SYN Flood</h3>
-            <Terminal active={active} cmd="hping3 -S --flood -V -p 80 target.com">
-              <div style={{ color: 'var(--text-muted)' }}>HPING target.com (eth0 192.168.1.100): S set, 40 headers + 0 data bytes</div>
-              <div style={{ color: 'var(--text-muted)' }}>hping in flood mode, no replies will be shown</div>
-              <div style={{ color: 'var(--rose)', marginTop: '1rem' }}>// Sending SYN...</div>
-              <div style={{ color: 'var(--rose)' }}>// Sending SYN...</div>
-              <div style={{ color: 'var(--rose)' }}>// Server allocates memory waiting for ACKs that never come.</div>
+            <h3 style={{ color: '#fff', marginBottom: '1rem' }}>Fetching Data via cURL</h3>
+            <Terminal active={active} cmd="curl -s https://dummyjson.com/products/1 | jq" fontSize="0.8rem">
+              <div style={{ color: 'var(--cyan)' }}>{'{'}</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"id"</span>: <span style={{ color: 'var(--emerald)' }}>1</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"title"</span>: <span style={{ color: 'var(--emerald)' }}>"Essence Mascara Lash Princess"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"price"</span>: <span style={{ color: 'var(--emerald)' }}>9.99</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"category"</span>: <span style={{ color: 'var(--emerald)' }}>"beauty"</span>,</div>
+              <div style={{ color: 'var(--text-muted)' }}>  <span style={{ color: 'var(--rose)' }}>"stock"</span>: <span style={{ color: 'var(--emerald)' }}>5</span></div>
+              <div style={{ color: 'var(--cyan)' }}>{'}'}</div>
+              <div style={{ color: 'var(--emerald)', marginTop: '1rem' }}>// The app UI parses this JSON and displays it beautifully.</div>
             </Terminal>
           </div>
         </div>
