@@ -46,12 +46,12 @@ export const slides = [
         <div className="grid-2">
           <div className="flex-col-gap stagger d-2">
             <div className="glass-panel" style={{ borderLeft: '4px solid var(--purple)' }}>
-              <h3 style={{ color: 'var(--purple)' }}>What is a Domain?</h3>
-              <p>Humans can't memorize IPs like <span className="mono">142.250.190.46</span>. Domains act as aliases.</p>
+              <h3 style={{ color: 'var(--purple)' }}>IANA & RFCs (The Numbers)</h3>
+              <p>The <strong>Internet Assigned Numbers Authority</strong> manages IP block allocations and Protocol ports based on open IETF <strong>RFC</strong> standards.</p>
             </div>
             <div className="glass-panel" style={{ borderLeft: '4px solid var(--emerald)' }}>
-              <h3 style={{ color: 'var(--emerald)' }}>ICANN</h3>
-              <p>The <strong>Internet Corporation for Assigned Names and Numbers</strong>. They are the supreme non-profit governing body that controls the root DNS servers and delegates TLDs (.com, .org, .in).</p>
+              <h3 style={{ color: 'var(--emerald)' }}>ICANN (The Names)</h3>
+              <p>The supreme governing body for names. They control root DNS servers and delegate TLDs (.com, .org) to Registries.</p>
             </div>
           </div>
           <div className="glass-panel stagger d-3" style={{ textAlign: 'center', borderColor: 'var(--amber)' }}>
