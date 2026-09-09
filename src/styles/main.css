@@ -513,23 +513,6 @@ p {
 }
 
 /* Progress Bar */
-.progress-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  z-index: 100;
-}
-#progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
-  width: 0%;
-  transition: width 0.4s var(--ease-smooth);
-  box-shadow: 0 0 10px var(--cyan-glow);
-}
-
 /* Virtual Controls */
 .virtual-controls {
   position: fixed;
@@ -656,4 +639,56 @@ body {
   * {
     cursor: none !important;
   }
+}
+
+.progress-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+}
+
+#progress-bar {
+  height: 100%;
+  background: currentColor;
+}
+
+.act-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+  transition: all 0.3s ease;
+  opacity: 0.3;
+}
+
+.act-marker.passed {
+  opacity: 1;
+}
+
+.act-marker.active-act {
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.act-marker-diamond {
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.5);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.5);
+}
+
+.act-marker.passed .act-marker-diamond {
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
 }

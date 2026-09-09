@@ -3,7 +3,8 @@ import { Slide } from '../components/Slide.jsx';
 import { Terminal } from '../components/Terminal.jsx';
 import { config } from '../config.js';
 import DecryptedText from '../components/react-bits/DecryptedText/DecryptedText.jsx';
-import BlurText from '../components/react-bits/BlurText/BlurText.jsx';
+import BlurText from "../components/react-bits/BlurText/BlurText.jsx";
+import { ActBreak } from "../components/ActBreak.jsx";
 
 export const slides = [
   // Slide 1: Title
@@ -33,6 +34,14 @@ export const slides = [
           </span>
         </div>
       </Slide>
+    )
+  },
+  // --- ACT I ---
+  {
+    color: "cyan",
+    isAct: true,
+    component: ({ active }) => (
+      <ActBreak active={active} actNumber="ACT I" title="Naming the Void" subtitle="Where machines become readable." color="cyan" icon="fa-globe" />
     )
   },
   // Slide 2: Domains & ICANN
@@ -184,6 +193,14 @@ export const slides = [
           </div>
         </div>
       </Slide>
+    )
+  },
+  // --- ACT II ---
+  {
+    color: "amber",
+    isAct: true,
+    component: ({ active }) => (
+      <ActBreak active={active} actNumber="ACT II" title="The Great Exhaustion" subtitle="Running out of space in a finite world." color="amber" icon="fa-battery-quarter" />
     )
   },
   // Slide 6: The IPv4 vs IPv6 Paradox
@@ -375,6 +392,14 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           </div>
         </div>
       </Slide>
+    )
+  },
+  // --- ACT III ---
+  {
+    color: "rose",
+    isAct: true,
+    component: ({ active }) => (
+      <ActBreak active={active} actNumber="ACT III" title="Invisible Walls" subtitle="Bypassing the gates of the internet." color="rose" icon="fa-shield-halved" />
     )
   },
   // Slide 21b: The ISP Trap
@@ -692,6 +717,14 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
       </Slide>
     )
   },
+  // --- ACT IV ---
+  {
+    color: "purple",
+    isAct: true,
+    component: ({ active }) => (
+      <ActBreak active={active} actNumber="ACT IV" title="Trust and Betrayal" subtitle="The fragile handshake of global routing." color="purple" icon="fa-handshake-angle" />
+    )
+  },
   // Slide 21b: Supply Chain & Attacks
   {
     color: "amber",
@@ -859,6 +892,14 @@ Nmap done: 1 IP address (1 host up) scanned in 4.52 seconds`}
           </div>
         </div>
       </Slide>
+    )
+  },
+  // --- ACT V ---
+  {
+    color: "emerald",
+    isAct: true,
+    component: ({ active }) => (
+      <ActBreak active={active} actNumber="ACT V" title="Eyes on the Wire" subtitle="To see the unseen. To read the unwritten." color="emerald" icon="fa-eye" />
     )
   },
   // Slide 22: Packet Sniffing & The HTTP Flaw

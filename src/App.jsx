@@ -160,7 +160,23 @@ function App() {
 
       {/* UI Overlay */}
       <div className="progress-container">
-        <div id="progress-bar" style={{ width: `${progress}%` }}></div>
+        <div id="progress-bar" style={{ width: `${progress}%`, transition: 'width 0.4s ease' }}></div>
+        {slides.map((slide, index) => {
+          if (slide.isAct) {
+            const actProgress = ((index + 1) / totalSlides) * 100;
+            const isPassed = currentSlide >= index;
+            return (
+              <div
+                key={index}
+                className={`act-marker ${isPassed ? 'passed' : ''} ${currentSlide === index ? 'active-act' : ''}`}
+                style={{ left: `${actProgress}%` }}
+              >
+                <div className="act-marker-diamond" style={{ background: `var(--${slide.color})` }}></div>
+              </div>
+            );
+          }
+          return null;
+        })}
       </div>
       {/* System Controls (Top Right) */}
       {introFinished && (
@@ -206,6 +222,9 @@ function App() {
       )}
 
       <div className="virtual-controls">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(25, 30, 40, 0.6)', border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', color: 'var(--text-dim)', padding: '0 1rem', borderRadius: '50px', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '2px', marginRight: '0.5rem' }}>
+          {currentSlide + 1} <span style={{ opacity: 0.5, margin: '0 0.5rem' }}>/</span> {totalSlides}
+        </div>
         <button className="control-btn" id="btn-prev" onClick={prevSlide}><i className="fa-solid fa-chevron-left"></i></button>
         <button className="control-btn" id="btn-next" onClick={nextSlide}><i className="fa-solid fa-chevron-right"></i></button>
       </div>
