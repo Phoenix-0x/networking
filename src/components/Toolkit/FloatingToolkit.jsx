@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'motion/react';
 import { audio } from '../../utils/audioEngine';
 import WhiteboardCanvas from './WhiteboardCanvas';
@@ -48,6 +48,9 @@ const MENU_STRUCTURE = {
 
 export default function FloatingToolkit({ currentSlide }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
+  const idleTimeout = useRef(null);
+  const dragStartPos = useRef({x: 0, y: 0});
   const [snapEdge, setSnapEdge] = useState('left');
   const [currentCategory, setCurrentCategory] = useState('main');
   const [isDecoderOpen, setIsDecoderOpen] = useState(false);
@@ -66,8 +69,45 @@ export default function FloatingToolkit({ currentSlide }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const toggleOpen = () => {
+
+  const resetIdle = () => {
+    setIsIdle(false);
+    if (idleTimeout.current) clearTimeout(idleTimeout.current);
+    if (!isOpen) {
+      idleTimeout.current = setTimeout(() => setIsIdle(true), 3000);
+    }
+  };
+
+  useEffect(() => {
+    resetIdle();
+    return () => clearTimeout(idleTimeout.current);
+  }, [isOpen]);
+
+  useEffect(() => {
+    const springConfig = { type: "spring", stiffness: 200, damping: 20 };
+    if (isIdle && !isOpen) {
+      if (snapEdge === 'left') animate(x, -BUTTON_SIZE / 1.5, springConfig);
+      else if (snapEdge === 'right') animate(x, window.innerWidth - (BUTTON_SIZE / 3), springConfig);
+      else if (snapEdge === 'top') animate(y, -BUTTON_SIZE / 1.5, springConfig);
+      else if (snapEdge === 'bottom') animate(y, window.innerHeight - (BUTTON_SIZE / 3), springConfig);
+    } else {
+      const currentX = x.get();
+      const currentY = y.get();
+      if (currentX < 0) animate(x, MARGIN, springConfig);
+      if (currentX > window.innerWidth - BUTTON_SIZE) animate(x, window.innerWidth - BUTTON_SIZE - MARGIN, springConfig);
+      if (currentY < 0) animate(y, MARGIN, springConfig);
+      if (currentY > window.innerHeight - BUTTON_SIZE) animate(y, window.innerHeight - BUTTON_SIZE - MARGIN, springConfig);
+    }
+  }, [isIdle, isOpen, snapEdge]);
+
+  const toggleOpen = (e) => {
+    if (e && e.clientX && dragStartPos.current) {
+      const dist = Math.hypot(e.clientX - dragStartPos.current.x, e.clientY - dragStartPos.current.y);
+      if (dist > 10) return;
+    }
     audio.init();
+    resetIdle();
+
     if (isOpen) {
       audio.playSweep(false);
       setIsOpen(false);
@@ -163,6 +203,7 @@ export default function FloatingToolkit({ currentSlide }) {
     }
 
     audio.playSnap();
+    resetIdle();
   };
 
   // Calculate angles based on snap edge
@@ -200,7 +241,12 @@ export default function FloatingToolkit({ currentSlide }) {
         drag
         dragMomentum={false}
         onDragEnd={handleDragEnd}
-        onPointerDown={() => audio.init()}
+        onPointerDown={(e) => {
+          dragStartPos.current = { x: e.clientX, y: e.clientY };
+          audio.init();
+          resetIdle();
+        }}
+        onPointerEnter={resetIdle}
       >
         <AnimatePresence>
           {isOpen && (MENU_STRUCTURE[currentCategory] || MENU_STRUCTURE.main).map((tool, index) => {
@@ -230,7 +276,7 @@ export default function FloatingToolkit({ currentSlide }) {
         </AnimatePresence>
 
         <motion.button 
-          className="toolkit-btn"
+          className={`toolkit-btn ${isIdle && !isOpen ? 'is-idle' : ''}`}
           onClick={toggleOpen}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

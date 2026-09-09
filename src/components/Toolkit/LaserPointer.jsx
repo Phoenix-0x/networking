@@ -25,11 +25,12 @@ export default function LaserPointer() {
     window.addEventListener('pointermove', handlePointerMove);
 
     let animationId;
-    const render = (time) => {
+    const render = () => {
+      const time = performance.now();
       ctx.clearRect(0, 0, width, height);
 
       // Filter points older than 4 seconds
-      pointsRef.current = pointsRef.current.filter(p => time - p.time < 4000);
+      pointsRef.current = pointsRef.current.filter(p => time - p.time < 400);
 
       if (pointsRef.current.length > 1) {
         ctx.lineJoin = 'round';
@@ -39,10 +40,10 @@ export default function LaserPointer() {
         for (let i = 1; i < pointsRef.current.length; i++) {
           const p1 = pointsRef.current[i - 1];
           const p2 = pointsRef.current[i];
-          const age = time - p2.time; // 0 to 4000
+          const age = time - p2.time; // 0 to 400
           
-          // opacity goes from 1.0 down to 0 over 4000ms
-          let opacity = 1 - (age / 4000);
+          // opacity goes from 1.0 down to 0 over 400ms
+          let opacity = 1 - (age / 400);
           if (opacity < 0) opacity = 0;
 
           // Convert hex to rgba for stroke
